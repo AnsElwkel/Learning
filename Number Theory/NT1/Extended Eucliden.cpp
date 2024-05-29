@@ -1,3 +1,5 @@
+//Observation of Equation : https://www.youtube.com/live/2k0TPnZyobY?si=HMCSfEZTBycaRHst
+
 //GCD(a , b) = ax + by
 //to find x , y
 ll extended_euclid(ll a, ll b , ll& x , ll& y) { // Recursive
@@ -38,7 +40,8 @@ ll extended_euclid(ll a,ll b,ll &x,ll &y)
     }
     return a;
 }
-//Observation of Equation : https://www.youtube.com/live/2k0TPnZyobY?si=HMCSfEZTBycaRHst
+
+// Observation ->  https://www.youtube.com/live/6_Hjovg4930?si=ZVGbVNCfMMIMcJ2B
 
 ll linearDiophantine(ll a, ll b, ll c, ll& x , ll& y){
     ll g = extended_euclid(a , b , x , y);
