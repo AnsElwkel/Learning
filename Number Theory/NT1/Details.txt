@@ -1,0 +1,5 @@
+- Extended_Eculidean
+- Bezout Identity (Generate Solutions)
+- Linear Diophantine Equation
+- Congurence
+- Linear Modular Equation
