@@ -1,0 +1,6 @@
+* Represent gridChar -> gridInt
+* Flatten array (convert 1D -> 2D and vice versa)
+* int visited[] -> in large test cases
+* Direction array
+* Compressing array of numbers
+* Overflow handling
