@@ -19,3 +19,27 @@ void BFS(int s){
         }
     }
 }
+
+/*
+ * Application
+ * 1- check Bipartite
+ */
+void BFS(int s){
+//    bool vis[N]{};
+    vector<int> color(N,INF);
+    queue<int> pq;pq.push(s);//source
+    color[s]=0;
+    bool isBipartite = 1;
+    while(sz(pq) and isBipartite){
+        int node = pq.front();
+        for(auto u : adj[node]){
+            if(color[u] == INF){
+                color[u] = 1-color[node];
+                pq.push(u);
+            }else if(color[u]==color[node]){
+                isBipartite=0;
+                break;
+            }
+        }
+    }
+}
