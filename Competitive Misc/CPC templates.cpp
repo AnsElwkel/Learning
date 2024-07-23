@@ -233,7 +233,7 @@ void solve(){
 
 }
 
-signed main() {
+signed main(){
     ios_base::sync_with_stdio(false); cin.tie(nullptr);cout.tie(nullptr);
     int t ;
 //    cin >> t;
