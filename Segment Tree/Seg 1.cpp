@@ -1,12 +1,7 @@
-- Size of SegmentTree is power of two
-- Updating element in log(n)
-- Process query in log(n)
-
-#define ll long long
 struct segmentTee{
 private:
-#define L 2*node+1
-#define R 2*node+2
+#define L (2*(node)+1)
+#define R (2*(node)+2)
 #define mid ((l + r)>>1)
     int sz;
     vector<ll> seg;
@@ -29,28 +24,28 @@ private:
         }
 
         if(idx <= mid) //Check if node that you want update left or right
-            build(l , mid , L , idx , val);
+            update(l , mid , L , idx , val);
         else
-            build(mid+1 , r , R , idx , val);
+            update(mid+1 , r , R , idx , val);
 
         seg[node]=seg[L]+seg[R];
     }
 
     ll query(int l, int r , int node , int lq , int rq){
         if(lq > r || rq < l) return 0;
-        if(rq <= r && lq >= l) return seg[node];
+        if(r <= rq && l >= lq ) return seg[node];
         ll left = query(l , mid , L , lq , rq);
         ll right = query(mid + 1 , r , R , lq , rq);
         return left + right;
     }
 
 public:
-    segmentTee(vector<int>& arr){
+    segmentTee(vector<ll>& arr){
         sz=1;
         int n = arr.size();
-        while(sz < n) sz<<1;
+        while(sz < n) sz*=2;
         seg=vector<ll>(sz*2);
-        build(0 , sz-1 , 0);// node 0 is top carry complete range (0->sz-1)
+        build(0 , sz-1 , 0 ,arr);// node 0 is top carry complete range (0->sz-1)
     }
     void update(int idx , int val){ //Update element (Call in main)
         update(0 , sz-1 , 0 , idx , val);
