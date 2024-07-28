@@ -33,9 +33,7 @@ two sets : (n+m)C(m)
 Sum of phi(d) for all d | n is equal to n.
 Number of pairs (x, y) that satisfy x + y = n and
                                             gcd(x, y) = 1 is phi(n).
-Game Theory:
-Game splits into multplie possibilities (take MEX)
-Game has multiple subgames (take XOR)
+
 Fi = Fibonacci of i
 F1^2 + F2^2 + ... + Fn^2 = Fn*Fn+1
 F1 + F2 + ... Fn = Fn+2 - 1
@@ -85,42 +83,43 @@ BFS:
 
 void BFS(int s){
     bool vis[N]{};
-    vector<int> dist(N,0);
-    queue<int> pq; //node
-    pq.push( s);//source
-    vis[s]=1;
-    dist[s]=0;
+    vector<int> dist(N);
+    queue<int> q; // node
+    q.push(s); // source
+    vis[s] = 1;
+    dist[s] = 0;
 
-    while(sz(pq)){
-        int node;
-        node= pq.front();
-        for(auto u : adj[node]){
-            if(vis[u])continue;
-            vis[u]=1;
-            dist[u]=dist[node]+1;
-            pq.push(u);
+    while(!q.empty()){
+        int parent = q.front();
+        for(auto child : adj[parent]){
+            if(vis[child])
+                continue;
+            vis[child]=1;
+            dist[child] = dist[parent]+1;
+            q.push(child);
         }
     }
 }
+
 
 /*
  * Application
  * 1- check Bipartite
  */
 void BFS(int s){
-//    bool vis[N]{};
     vector<int> color(N,INF);
-    queue<int> pq;pq.push(s);//source
-    color[s]=0;
+    queue<int> q;
+    q.push(s); //source
+    color[s] = 0;
     bool isBipartite = 1;
-    while(sz(pq) and isBipartite){
-        int node = pq.front();
-        for(auto u : adj[node]){
-            if(color[u] == INF){
-                color[u] = 1-color[node];
-                pq.push(u);
-            }else if(color[u]==color[node]){
-                isBipartite=0;
+    while(!p.empty() and isBipartite){
+        int parent = pq.front();
+        for(auto child : adj[parent]){
+            if(color[child] == INF){
+                color[child] = 1-color[parent];
+                q.push(child);
+            }else if(color[child]==color[parent]){
+                isBipartite = 0;
                 break;
             }
         }
@@ -128,28 +127,27 @@ void BFS(int s){
 }
 
 Dijkstra:
-//When there are weighted graphs
-//Is a shortest path algorithm
+// When there are weighted graphs
+// Is a shortest path algorithm
 
 void dijkstra(int s){
     bool vis[N]{};
     vector<int> dist(N,INF);
-    priority_queue<pair<int , int>> pq; // weight node
-    pq.push({0 , s});//source
-    vis[s]=1;
+    priority_queue<pair<int , int>> pq; // {weight, node}
+    pq.push({0 , s}); //source
+    vis[s] = 1;
 
-    dist[s]=0;
+    dist[s] = 0;
     while(sz(pq)){
-        int node , weight;
-        tie(weight , node) = pq.top();
-        weight*=-1;// if we need this
-        for(auto [u , w] : adj[node]){
-            if(vis[u])continue;
-            vis[u]=1;
+        auto [weight, parent] = pq.top();
+        weight*=-1; // if we need this
+        for(auto [child , w] : adj[parent]){
+            if(vis[child])continue;
+            vis[child]=1;
 
-            if(dist[node]+w<dist[u])
-                dist[u]=dist[node]+w;
-            pq.push({-dist[u], u});
+            if(dist[parent]+w<dist[child])
+                dist[child]=dist[parent]+w;
+            pq.push({-dist[child], child});
         }
     }
 }
