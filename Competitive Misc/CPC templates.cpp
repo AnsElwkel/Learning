@@ -75,7 +75,7 @@ void preSPF () {
     iota(all(spf) , 0);
     for(int i = 2; i * i <= MAX ; i++){
         if(spf[i] == i)
-            for(int j = i*i ; j*j <= MAX ; j+=i)
+            for(int j = i*i ; j<= MAX ; j+=i)
                 spf[j] = min(spf[j] , i);
     }
 }
