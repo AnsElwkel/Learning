@@ -1,5 +1,8 @@
 /**
 * Important notes for Diamond Relationship
+
+
+In general if class can be visible from more than direction, use virtual public CLASS not just public CLASS
  */
 class Person {
 protected:
