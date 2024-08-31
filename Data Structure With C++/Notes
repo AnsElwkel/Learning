@@ -1,0 +1,37 @@
+Array: A Physical Data structure
+
+Physical: data stored directly in the memory
+Data Structure: orgnaized data + operations over them
+
+Vector: it's just a dynamic array so another physical data structure
+
+Static array is created on stack
+Dynamic array is created on heap
+*****************************************************************************************
+
+2D Array: logical and Physical view:
+    -it's just a table where access using [][]
+    -no care how is exactly in low-level memory
+    table view -> logical view
+
+{{1,2,3},
+ {4,5,6},
+ {7,8,9}}
+    Physical view in memory of 2D array :
+        N*M (9) consecutive in memory
+        but data can be either raw-major or column major order
+        raw major order -> 1 2 3 4 5 6 7 8 9
+        column major order -> 1 4 7 2 5 8 3 6 9
+******************************************************************************************
+
+Linked List: is also physical data structure
+    array is contiguous memory but linked list is not
+
+* Array and Linked List are the main physical data structure
+*******************************************************************************************
+
+Logical data structure : implemented based on physical data structure
+Big picture view -> logical(what) . the actual low-level memory arrangement = physical(how)
+
+Most of logical data structure:
+Queue , Stack , Heaps , Trees , Hash Table

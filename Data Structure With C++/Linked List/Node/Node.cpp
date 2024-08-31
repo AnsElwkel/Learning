@@ -1,3 +1,5 @@
+#include<iostream>
+using namespace std;
 class Node {
 public:
     int data;
@@ -43,7 +45,7 @@ Node* find(int val , Node *node) {
     return nullptr;
 }
 
-void solve() {
+int main(){
     Node *node1 = new Node(0);
     Node *node2 = new Node(4);
     Node *node3 = new Node(10);
@@ -72,3 +74,4 @@ void solve() {
 
     cout << find(23, node1)->data << endl;
     cout << find(14, node1)->data << endl; //Undefined behaviour
+}
