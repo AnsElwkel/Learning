@@ -1,7 +1,7 @@
 //Rule : if there is a virtual function , every child class is also virtual in this function even if it didn't put the virtual function
 class A {
     public :
-        virtual void f1(){cout << "A::f1" << endl;}
+    virtual void f1(){cout << "A::f1" << endl;}
     void f2(){cout << "A::f2" << endl;}
     void f3(){cout << "A::f3" << endl;}
 };

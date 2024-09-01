@@ -1,13 +1,15 @@
 //Given one of them shapes -> square , rectangle , circle - > shapes -> common : name , area
-
+#include <iostream>
+using namespace std;
+const int PI = 3.14159265358979323846;
 class Shape {
-    string name;
+    std::string name;
 public:
-    string get_name() {
+    Shape(std::string name) :
+            name(name) {}
+
+    std::string getName() {
         return name;
-    }
-    void set_name( string name) {
-        string s = name;
     }
     virtual double Area(){return -1 ;} // or throw} statment handeled in case of i actual call Area function in shape class ,, throw because i'm don't know shape to determine its area
     virtual double Perimeter(){return -1 ;}
@@ -17,9 +19,7 @@ public:
 class Square : public Shape {
     int length;
 public:
-    Square(int _length) : length(_length) {
-        set_name("Square");
-    }
+    Square(int _length) :Shape("Square"), length(_length) {}
     double Area() {
         return length * length;
     }
@@ -28,9 +28,7 @@ public:
 class Rectangle : public Shape {
     int width , height;
 public:
-    Rectangle(int _width , int _height) : width(_width), height(_height) {
-        set_name("Rectangle");
-    }
+    Rectangle(int _width , int _height) : Shape("Rectangle"), width(_width), height(_height) {}
     double Area() {
         return width * height;
     }
@@ -39,8 +37,8 @@ public:
 class Circle : public Shape {
     int radius;
 public:
-    Circle(int _radius) : radius(_radius) {
-        set_name("Circle");
+    Circle(int _radius) : Shape("Circle"), radius(_radius) {
+
     }
 
     double Area() {
@@ -49,7 +47,7 @@ public:
 };
 
 void calcArea(Shape *shape) {
-    cout << shape->get_name() << ' ' << shape->Area() << endl;
+    cout << shape->getName() << ' ' << shape->Area() << endl;
 }
 
 int main(){
@@ -57,7 +55,7 @@ int main(){
     Circle circle(5);
     Square square(4);
 
-    calcArea(&rect);
+    calcArea(new Rectangle(10 , 20));
     calcArea(&square);
     calcArea(&circle);
 }

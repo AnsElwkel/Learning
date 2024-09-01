@@ -22,7 +22,7 @@ int main(){
     p.print2(); //person
     /**
      *We can make point type of base class and refer to derived class
-     *  but onle call member functions of Pointer Type
+     *  but only call member functions of Pointer Type
      *  when there are override functions also call in pointer type
      */
     Person* ptr1 = new Student(); //Person pointer to create student object in memory
