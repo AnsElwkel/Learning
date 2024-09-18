@@ -50,6 +50,14 @@ namespace DLL {
 
         void delete_last_occ(int val);
 
+        void delete_with_key(T val);
+
+        void delete_even_position();
+
+        void delete_odd_position();
+
+        bool is_palindrome_list();
+
         ~LinkedList();
     };
 

@@ -198,6 +198,61 @@ namespace DLL {
     int LinkedList<T>::size() const {
         return this->length;
     }
+
+
+
+    template<class T>
+    void LinkedList<T>::delete_with_key(T val) {
+        for(Node<T> * node = head ; node ;) {
+            if(node->data == val) {
+                Node<T> *tmp = node->next;
+                delete_node(node);
+                node = tmp;
+            }else node = node->next ;
+        }
+    }
+
+
+    template<class T>
+    void LinkedList<T>::delete_even_position() {
+        for(Node<T> *node = head ; node ;) {
+            Node<T> *tmp = nullptr;
+            if(node->next != nullptr) {
+                tmp = node->next->next;
+                delete_node(node->next);
+                node = tmp;
+            }else node = node->next;
+        }
+    }
+
+    template<class T>
+    void LinkedList<T>::delete_odd_position() {
+        for(Node<T> *node = head->next ; node ;) {
+            delete_node(node->prev);
+            node = node->next;
+            if(node == tail) {
+                delete_back();
+                break;
+            }
+            if(node)
+                node=node->next;
+            else
+                break;
+        }
+    }
+
+    template<class T>
+    bool LinkedList<T>::is_palindrome_list() {
+
+        for(Node<T> *front = head , *back = tail ; front && back ; front = front->next , back = back->prev) {
+            if(front->data != back->data)
+                return false;
+        }
+
+        return true;
+    }
+
+
 }
 
 #endif
