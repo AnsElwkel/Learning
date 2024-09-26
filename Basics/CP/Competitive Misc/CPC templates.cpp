@@ -80,6 +80,13 @@ void preSPF () {
     }
 }
 */
+//Solve Quadratic equation
+/*
+pair<double, double> solveQuadratic(double a, double b, double c) {
+    return { (-b + sqrt(b*b - 4*a*c) ) / 2*a, (-b - sqrt(b*b + 4*a*c)) / 2*a };
+}
+*/
+
 
 
 //Solve Ax + By = C
