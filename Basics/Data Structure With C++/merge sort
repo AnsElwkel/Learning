@@ -1,0 +1,45 @@
+void merge(vector<int> & arr , int l , int m, int r) {
+    assert(l >= 0 && m >= 0) , assert(l <= m && m <= r);
+
+    int n1 = m - l + 1 , n2 = r - m;
+    vector<int> L(n1) , R(n2);
+    for(int i = l ; i <= m ; i++)
+        L[i - l] = arr[i];
+    for(int i = m + 1 ; i <= r ; i++)
+        R[i - m - 1] = arr[i];
+
+    int i = 0, j = 0 , k = l;
+    while(i < n1 && j < n2)
+        if(L[i] <= R[j])
+            arr[k++] = L[i++];
+        else
+            arr[k++] = R[j++];
+
+
+    while(i < n1)
+        arr[k++] = L[i++];
+
+    while(j < n2)
+        arr[k++] = R[j++];
+
+    assert(j == n2) , assert(i == n1);
+}
+
+
+void mergeSort(vector<int> & arr, int l , int r) {
+    if(l >= r) return ;
+    int mid = (l + r) >> 1;
+    mergeSort(arr, l , mid) ;
+    mergeSort(arr, mid + 1 , r) ;
+    merge(arr , l , mid , r);
+}
+
+void solve() {
+    int n; cin >> n;
+    vector<int> arr(n);
+
+    for(int i = 0 ;i < n; i++) cin >> arr[i];
+    mergeSort(arr , 0 , n - 1);
+    for(auto i : arr) cout << i << ' ';
+    cout << endl;
+}
