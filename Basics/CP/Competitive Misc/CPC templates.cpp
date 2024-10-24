@@ -55,6 +55,15 @@ ll nCr(ll n , ll r){
     return multi(nPr(n , r),invFact[r] , MOD);
 }
 */
+/*
+Catalan numbers :
+- Calculate number of valid parenthesis have n pairs
+- Calculate number of binary tree that have n nodes
+- Calculate number of general rooted tree that have n + 1 nodes
+*/
+// ll Catalan(int n){
+//     return (1 / (1 + n)) * nCr(2*n , n);
+// }
 
 //Seive
 /*
