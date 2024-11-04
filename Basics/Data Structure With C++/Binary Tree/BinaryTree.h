@@ -7,11 +7,12 @@
 #include <queue>
 #include <deque>
 
-template<class T>
+
+template<typename T>
 class BinaryTree {
 public:
     BinaryTree(T val);
-    BinaryTree(const std::string& postfix);
+    BinaryTree(const std::string& postfix); //Expression trees
 
     bool is_just_num();
 
@@ -56,6 +57,8 @@ public:
 
     //problem on leetcode
     std::pair<int,int> tree_diameter() const;
+
+    int tree_diameter_2() const;
 
     ~BinaryTree();
 

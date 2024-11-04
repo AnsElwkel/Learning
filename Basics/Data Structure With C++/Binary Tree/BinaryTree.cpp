@@ -1,7 +1,7 @@
 #ifndef BINARY_TREE_CPP
 #define BINARY_TREE_CPP
 #include "BinaryTree.h"
-
+/*  /////////////////////////_CONSTRUCTORS_/////////////////////////*/
 template<class T>
 BinaryTree<T>::BinaryTree(T val) : data(val) , left(nullptr), right(nullptr) {
 }
@@ -27,8 +27,9 @@ BinaryTree<T>::BinaryTree(const std::string& postfix) {
     this->right = root->right;
 }
 
+/*  /////////////////////////_TRAVERSAL_TYPES_ /////////////////////////*/
 template<class T>
-void BinaryTree<T>::print_inorder_expression() {
+void BinaryTree<T>::print_inorder_expression() { // Expression trees
     if(left) {
         if(!left->is_leaf())
             std::cout << "(";
@@ -51,9 +52,9 @@ template<class T>
 void BinaryTree<T>::print_postorder() {
     if (left)
         left->print_postorder();
-    std::cout << data << ' ';
     if (right)
         right->print_postorder();
+    std::cout << data << ' ';
 }
 
 template<class T>
@@ -67,11 +68,67 @@ void BinaryTree<T>::print_inorder() {
 
 template<class T>
 void BinaryTree<T>::print_preorder() {
+    std::cout << data << ' ';
     if (left)
         left->print_preorder();
-    std::cout << data << ' ';
     if (right)
         right->print_preorder();
+}
+
+template<class T>
+void BinaryTree<T>::print_by_levels() {
+    std::queue<BinaryTree<T>* > q;
+    q.push(this);
+    int level = 0;
+    while(!q.empty()) {
+        int size = q.size();
+        std::cout << "Level: "  << level << '\n';
+        while(size--) {
+            auto current = q.front();
+            q.pop();
+            std::cout << current->data << ' ';
+            if(current->left) {
+                q.push(current->left);
+            }
+            if(current->right) {
+                q.push(current->right);
+            }
+        }
+        ++level;
+        std::cout << '\n';
+    }
+}
+
+template<class T>
+void BinaryTree<T>::print_by_levels_spiral() { // good idea
+    std::deque<BinaryTree<T>* > q;
+    q.push_front(this);
+    int level = 0;
+    while(!q.empty()) {
+        int size = q.size();
+        std::cout << "Level: "  << level << '\n';
+        while(size--) {
+            if(level % 2 == 0) {
+                auto current = q.front();
+                q.pop_front();
+                std::cout << current->data << ' ';
+                if(current->left)
+                    q.push_back(current->left);
+                if(current->right)
+                    q.push_back(current->right);
+            }else {
+                auto current = q.back();
+                q.pop_back();
+                std::cout << current->data << ' ';
+                if(current->right)
+                    q.push_front(current->right);
+                if(current->left)
+                    q.push_front(current->left);
+            }
+        }
+        ++level;
+        std::cout << '\n';
+    }
 }
 
 template<class T>
@@ -236,63 +293,6 @@ std::pair<int,int> BinaryTree<T>::tree_diameter() const {
     ret.second = 1 + std::max(left_diam.second, right_diam.second);
     return ret;
 }
-
-template<class T>
-void BinaryTree<T>::print_by_levels() {
-    std::queue<BinaryTree<T>* > q;
-    q.push(this);
-    int level = 0;
-    while(!q.empty()) {
-        int size = q.size();
-        std::cout << "Level: "  << level << '\n';
-        while(size--) {
-            auto current = q.front();
-            q.pop();
-            std::cout << current->data << ' ';
-            if(current->left) {
-                q.push(current->left);
-            }
-            if(current->right) {
-                q.push(current->right);
-            }
-        }
-        ++level;
-        std::cout << '\n';
-    }
-}
-
-template<class T>
-void BinaryTree<T>::print_by_levels_spiral() { // good idea
-    std::deque<BinaryTree<T>* > q;
-    q.push_front(this);
-    int level = 0;
-    while(!q.empty()) {
-        int size = q.size();
-        std::cout << "Level: "  << level << '\n';
-        while(size--) {
-            if(level % 2 == 0) {
-                auto current = q.front();
-                q.pop_front();
-                std::cout << current->data << ' ';
-                if(current->left)
-                    q.push_back(current->left);
-                if(current->right)
-                    q.push_back(current->right);
-            }else {
-                auto current = q.back();
-                q.pop_back();
-                std::cout << current->data << ' ';
-                if(current->right)
-                    q.push_front(current->right);
-                if(current->left)
-                    q.push_front(current->left);
-            }
-        }
-        ++level;
-        std::cout << '\n';
-    }
-}
-
 
 template<class T>
 BinaryTree<T>::~BinaryTree() {
