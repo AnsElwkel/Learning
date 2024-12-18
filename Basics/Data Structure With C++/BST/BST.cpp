@@ -138,6 +138,59 @@ void BST<T>::insert(T val) {
 }
 
 template<class T>
+BST<T>* BST<T>::min_node() {
+    BST<T> *node = this;
+    while(node && node->left)
+        node = node->left;
+    return node;
+}
+
+template<class T>
+void BST<T>::remove(T val) {
+    // if(data == val && !left && !right)
+    // return ; // can't delete root
+    delete_node(val , this);
+}
+
+template<class T>
+BST<T>* BST<T>::delete_node(T val , BST<T>* node) {
+    if(!node)
+        return nullptr;
+
+    if(node->data > val)
+        node->left = delete_node(val, node->left);
+    else if(node->data < val)
+        node->right = delete_node(val, node->right);
+    else { // reach target
+
+        BST<T>* tmp = node;
+        if(!node->left && !node->right) {
+            node = nullptr;
+            delete tmp;
+        }
+        else if(!node->right)
+            node->special_delete(node->left);
+        else if(!node->left)
+            node->special_delete(node->right);
+        else {
+            BST<T>* mn = node->right->min_node();
+            node->data = mn->data; // copy data and go to delete the successor
+            node->right = delete_node(node->data , node->right);
+        }
+    }
+    return node;
+}
+
+template<class T>
+void BST<T>::special_delete(BST<T>* child) { // virtual delete to be able to handle case that if target is root
+    data = child->data;
+    left = child->left;
+    right = child->right;
+    delete child;
+}
+
+
+template<class T>
 void BST<T>::print_inorder() {
     if (left)
         left->print_inorder();

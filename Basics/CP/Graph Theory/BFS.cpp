@@ -10,7 +10,7 @@ void BFS(int s){
 
     while(sz(pq)){
         int node;
-        node= pq.front();
+        node= pq.front(); pq.pop();
         for(auto u : adj[node]){
             if(vis[u])continue;
             vis[u]=1;

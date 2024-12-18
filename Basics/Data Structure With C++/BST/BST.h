@@ -2,7 +2,7 @@
 #define BST_H
 #include <iostream>
 #include <vector>
-
+//sub tree style
 template<class T>
 class BST {
 public:
@@ -13,7 +13,13 @@ public:
 
     void insert(T val);
 
+    BST<T> *min_node();
+
     void remove(T val);
+
+    BST<T> *delete_node(T val, BST<T> *node);
+
+    void special_delete(BST<T> *child);
 
     bool search(T val);
 
