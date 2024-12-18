@@ -1,0 +1,42 @@
+Numeric:
+1-  TINYINT      1 BYTE
+2-  SMALLINT     2 BYTE
+3-  MEDINT       3 BYTE
+4-  INT          4 BYTE
+5-  BIGINT       8 BYTE
+6-  DECIMAL
+7-  FLOAT
+8-  DOUBLE
+9-  REAL (== DOUBLE (Except SQL Mode is enabled as FLOAT))
+10- SERIAL is an alias for BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE.
+
+DATE AND TIME:
+1- DATE	    '0000-00-00'
+2- TIME	    '00:00:00'
+3- DATETIME	'0000-00-00 00:00:00'
+4- TIMESTAMP	'0000-00-00 00:00:00'
+5- YEAR	     0000
+
+STRING:
+1- CHAR :
+    * Store Fixed Value (based on given size)
+    * Max Characters 255
+    * Use static memory
+    * Faster than VARCHAR
+
+2- VARCHAR :
+    * Store Variable Value (based on actual input size)
+    * Max Characters 65.535 after SQL v 5.0.3 .. before this version was 255
+    * Use Dynamic Memory
+
+3- [TINY|MED|LONG] TEXT :
+    * Store String
+    * Deal & Compared depend on charset
+    * Store long Strings
+
+4- BLOB :  Binary Large Object
+    * Deal & Compared depend on Bytes
+    * Use to store images & other files
+
+5- Enum (Category)
+6- Set  (like as enum but we can select more than category) *useful for Tags and similar ideas
