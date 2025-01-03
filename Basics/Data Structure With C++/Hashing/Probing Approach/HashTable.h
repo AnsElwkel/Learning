@@ -4,7 +4,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/** Probing (Open Addressing , Closed Hashing)
+/* Probing (Open Addressing , Closed Hashing)
 - Open addressing is a method of collision resolution in hash tables.
 - In open addressing, when a new obj is inserted, the hash table is searched for the next available slot.
 - The search starts from the slot where the obj should be placed.
@@ -51,6 +51,25 @@ i -> 0, 1, 2, 3 ,...
                     and initial_hash2 should should have several characteristics
 */
 
+
+
+
+/**Some notes:
+ * probing_type : 0 -> Linear Probing , 1 -> Quadratic Probing , 2 -> Double Hashing
+ * if your object is non-primitive type , you should implement the following functions:
+ * 1- int hash() const; // return the hash code of the object
+ * 2- bool operator==(const T& other) const; // return true if the object is equal to other object
+ * 3- T& operator=(const T& other); // copy the other object to this object
+ * 4- T(const T& other); // copy constructor
+ * 5- string toString() const; // return the string representation of the object
+ *
+ * if your object is primitive type , you should use:
+ * insert(T obj , int hashCode), get(T& obj , int hashCode) and remove(T obj , int hashCode) functions
+ * and comment the printTable() function
+ *
+ */
+
+
 //T -> object type
 template<typename T>
 class HashTable{
@@ -59,7 +78,6 @@ class HashTable{
     T* deleted;
     int nextIdx(int initial_hash , int i) const;
 public:
-    //probing_type : 0 -> Linear Probing , 1 -> Quadratic Probing , 2 -> Double Hashing
     HashTable(int size , int probing_type = 0 , T* deleted = NULL);
     bool insert(T obj , int hashCode); // true if inserted , false if the table is full
     bool insert(T obj); // true if inserted , false if the table is full
